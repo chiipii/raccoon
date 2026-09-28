@@ -36,5 +36,5 @@ public class Raccoon {
 	
 	private LocalDateTime createdAt;
 	
-	private LocalDateTime updateAt;
+	private LocalDateTime updatedAt;
 }
