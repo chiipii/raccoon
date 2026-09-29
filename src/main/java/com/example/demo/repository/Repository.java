@@ -13,6 +13,6 @@ import com.example.demo.entity.Raccoon;
 public interface Repository extends JpaRepository<Raccoon, Integer>{
 	
 	//目撃日時の新しい順に全件取得する。
-	List<Raccoon> findAllByOrderBuSightedDateDescSightedTimeDesc();
+	List<Raccoon> findAllByOrderBySightedDateDescSightedTimeDesc();
 
 }
