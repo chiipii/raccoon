@@ -23,7 +23,7 @@ public class SightingController {
 	
 	/**一覧画面を表示する*/
 	@GetMapping("/sightings")
-	public String List(Model model) {
+	public String list(Model model) {
 		List <Raccoon> sightings = raccoonService.findAll();
 		model.addAttribute("sightings", sightings);
 		return "sightings/list";
