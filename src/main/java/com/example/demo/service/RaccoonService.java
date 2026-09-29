@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -24,5 +25,14 @@ public class RaccoonService {
 	/**目撃日時の新しい順に全件返す*/
 	public List<Raccoon> findAll(){
 		return raccoonRepository.findAllByOrderBySightedDateDescSightedTimeDesc();
+	}
+	
+	/**目撃記録を登録する*/
+	@Transactional
+	public void register(Raccoon raccoon) {
+		LocalDateTime now = LocalDateTime.now();
+		raccoon.setCreatedAt(now);
+		raccoon.setUpdatedAt(now);
+		raccoonRepository.save(raccoon);
 	}
 }
