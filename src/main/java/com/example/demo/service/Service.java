@@ -21,6 +21,6 @@ public class Service {
 	
 	/**目撃日時の新しい順に全件返す*/
 	public List<Raccoon> findAll(){
-		return repository.findAllByOrderBuSightedDateDescSightedTimeDesc();
+		return repository.findAllByOrderBySightedDateDescSightedTimeDesc();
 	}
 }
