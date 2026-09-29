@@ -1,12 +1,16 @@
 package com.example.demo.controller;
 
+import java.time.LocalTime;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.entity.Raccoon;
+import com.example.demo.form.RaccoonForm;
 import com.example.demo.service.RaccoonService;
 
 /**
@@ -27,6 +31,26 @@ public class SightingController {
 		List <Raccoon> sightings = raccoonService.findAll();
 		model.addAttribute("sightings", sightings);
 		return "sightings/list";
+	}
+	
+	/**登録画面を表示する*/
+	@GetMapping("/sightings/new")
+	public String newSighting(Model model) {
+		model.addAttribute("raccoonFrom", new RaccoonForm());
+		return "sightings/new";
+	}
+	
+	/**登録する*/
+	@PostMapping("sightings")
+	public String create(@ModelAttribute RaccoonForm raccoonForm) {
+		Raccoon raccoon = new Raccoon();
+		raccoon.setSightedDate(raccoonForm.getSightedDate());
+		raccoon.setSightedTime(LocalTime.of(raccoonForm.getSightedHour(), 0));
+		raccoon.setCount(raccoonForm.getCount());
+		raccoon.setMemo(raccoonForm.getMemo());
+		
+		raccoonService.register(raccoon);
+		return "redirect:/sightings";
 	}
 
 }
