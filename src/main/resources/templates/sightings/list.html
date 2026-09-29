@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	
+<head>
+	<meta charset="UTF-8">
+	<title>目撃記録一覧</title>
+</head>
+
+<body>
+	<h1>アライグマ目撃記録</h1>
+	
+	<table border="1">
+		<thead>
+			<tr>
+				<th>目撃日</th>
+				<th>時刻</th>
+				<th>回数</th>
+				<th>めも</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each="sighting : ${sightings}">
+				<td th:text="${sighting.sightedDate}">2026/01/01</td>
+				<td th:text="${sighting.sightedTime}">0:00</td>
+				<td th:text="${sighting.count}">0</td>
+				<td th:text="${sighting.memo}">めも</td>
+			</tr>
+			<tr th:if="${#lists.isEmpty(sightings)}">
+				<td colspan="4">記録がありません。</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
