@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	
+<head>
+<meta charset="UTF-8">
+<title>目撃記録の登録</title>
+</head>
+
+<body>
+	<h1>目撃記録の登録</h1>
+	
+	<form th:action="@{/sightings}" th:object="${raccoonForm}" method="post">
+		
+		<div>
+			<label>目撃日</label>
+			<input type="date" th:field="*{sightedDate}">
+		</div>
+		
+		<div>
+			<label>時刻</label>
+			<select th:field="*{sightedHour}">
+				<option value="">選択して下さい</option>
+				<option th:each="h : ${#numbers.sequence(0, 23)}"
+				        th:value="${h}" th:text="${h} + '時'"></option>
+			</select>
+		</div>
+		
+		<div>
+			<label>回数</label>
+			<input type="number" th:field="*{count}">
+		</div>
+		
+		<div>
+			<label>めも</label>
+			<input type="text" th:field="*{memo}" size="40">
+		</div>
+		
+		<button type="submit">登録する</button>
+	</form>
+	
+	<p><a th:href="@{/sightings}">一覧へ戻る</a></p>
+</body>
+</html>
