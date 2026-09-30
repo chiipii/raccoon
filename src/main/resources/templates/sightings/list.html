@@ -29,7 +29,7 @@
 				<td th:text="${sighting.memo}">めも</td>
 				<td>
 					<a th:href="@{/sightings/{id}(id=${sighting.id})}">編集</a>
-					<a th:href="@{/sightings/{id}(Id=${sighting.id})}">削除</a>
+					<a th:href="@{/sightings/{id}/delete(id=${sighting.id})}">削除</a>
 				</td>
 					
 			</tr>
