@@ -3,8 +3,11 @@ package com.example.demo.controller;
 import java.time.LocalTime;
 import java.util.List;
 
+import jakarta.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,7 +45,12 @@ public class SightingController {
 	
 	/**登録する*/
 	@PostMapping("/sightings")
-	public String create(@ModelAttribute RaccoonForm raccoonForm) {
+	public String create(@Valid @ModelAttribute RaccoonForm raccoonForm, BindingResult bindingResult) {
+		
+		if(bindingResult.hasErrors()) {
+			return "sightings/new";
+		}
+		
 		Raccoon raccoon = new Raccoon();
 		raccoon.setSightedDate(raccoonForm.getSightedDate());
 		raccoon.setSightedTime(LocalTime.of(raccoonForm.getSightedHour(), 0));
