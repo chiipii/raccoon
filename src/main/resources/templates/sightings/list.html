@@ -8,7 +8,32 @@
 
 <body>
 	<h1>アライグマ目撃記録</h1>
+	
+	<h2>集計</h2>
+	<p th:if="${recordCount == 0}">まだ記録がありません。</p>
+	
+	<div th:unless="${recordCount == 0}">
+		<p>
+			のべ目撃数<strong th:text="${totalCount}">0</strong>匹
+			(記録 <span th:text="${recordCount}">0</span>件)
+		</p>
+		
+		<p>
+			最終目撃日
+			<strong th:text="${sightings[0].sightedDate">2026/01/01</strong>
+		</p>
+		
+		<h3>時間帯別</h3>
+		<table border="1">
+			<tr th:each="entry : ${countByHour}">
+				<td th:text="${entry.key} + '時'">0時</td>
+				<td th:text="${entry.value} + '匹'">0匹</td>
+			</tr>
+		</table>
+	</div>
+	
 	<p><a th:href="@{/sightings/new}">新規登録</a></p>
+	
 	
 	<table border="1">
 		<thead>
