@@ -1,7 +1,10 @@
 package com.example.demo.form;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
+import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -28,6 +31,24 @@ public class RaccoonForm {
 	@Min(value = 0, message="時刻は0~23で選択して下さい。")
 	@Max(value = 23, message="時刻は0~23で選択して下さい。")
 	private Integer sightedHour;
+	
+	/**
+	 * 目撃日時がみらいでないこと。
+	 * 日時と時刻を組み合わせないと判定できないため、メソッドで検査する。
+	 */
+	@AssertTrue(message="未来の日時は登録できません。")
+	public boolean isNotFuture() {
+		//どちらかが未入力なら、それぞれの@NotNullに任せる。
+		if(sightedDate == null || sightedHour == null) {
+			return true;
+		}
+		//Min/Maxの範囲外ならLocalTime.ofが例外を投げるので先に逃す。
+		if(sightedHour < 0 || sightedHour > 23) {
+			return true;
+		}
+		LocalDateTime sighted = LocalDateTime.of(sightedDate,  LocalTime.of(sightedHour, 0));
+		return !sighted.isAfter(LocalDateTime.now());
+	}
 	
 	/**回数*/
 	@NotNull(message="回数を入力して下さい。")
