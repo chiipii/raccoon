@@ -18,6 +18,8 @@
 		<div>
 			<label>目撃日</label>
 			<input type="date" th:field="*{sightedDate}" th:errorclass="error">
+			<span th:if="${#fields.hasErrors('sightedDate')}"
+			      th:errors="*{sightedDate}" class="erroe-message"></span>
 		</div>
 		
 		<div>
@@ -27,16 +29,22 @@
 				<option th:each="h : ${#numbers.sequence(0, 23)}"
 				        th:value="${h}" th:text="${h} + '時'"></option>
 			</select>
+			<span th:if="${#fields.hasErrors('sightedHour')}"
+			      th:errors="*{sightedHour}" class="error-message"></span>
 		</div>
 		
 		<div>
 			<label>回数</label>
 			<input type="number" th:field="*{count}" th:errorclass="error">
+			<span th:if="${#fields.hasErrors('count')}"
+			      th:errors="*{count}" class="error-message"></span>
 		</div>
 		
 		<div>
 			<label>めも</label>
 			<input type="text" th:field="*{memo}" size="40" th:errorclass="error">
+			<span th:if="${#fields.hasErrors('memo')}"
+			      th:errors="*{memo}" class="error-message"></span>
 		</div>
 		
 		<button type="submit">登録する</button>
