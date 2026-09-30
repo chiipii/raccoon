@@ -58,4 +58,7 @@ public class RaccoonForm {
 	/**めも*/
 	@Size(max = 255, message="めもは255文字以内で入力して下さい。")
 	private String memo;
+	
+	/**ID(更新時に使用。登録時はnull)*/
+	private Integer id;
 }
