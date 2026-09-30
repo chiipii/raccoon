@@ -17,6 +17,7 @@
 				<th>時刻</th>
 				<th>回数</th>
 				<th>めも</th>
+				<th>編集</th>
 			</tr>
 		</thead>
 		
@@ -26,9 +27,12 @@
 				<td th:text="${sighting.sightedTime}">0:00</td>
 				<td th:text="${sighting.count}">0</td>
 				<td th:text="${sighting.memo}">めも</td>
+				<td>
+					<a th:href="@{/sightings/{id}(id=${sighting.id})}">編集</a>
+				</td>
 			</tr>
 			<tr th:if="${#lists.isEmpty(sightings)}">
-				<td colspan="4">記録がありません。</td>
+				<td colspan="5">記録がありません。</td>
 			</tr>
 		</tbody>
 	</table>
