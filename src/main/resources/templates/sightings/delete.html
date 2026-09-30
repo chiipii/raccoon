@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/www.thymeleaf.org">
+	
+<head>
+<meta charset="UTF-8">
+<title>削除の確認</title>
+</head>
+
+<body>
+	<h1>削除の確認</h1>
+	
+	<p>次の記録を削除します。よろしいですか？</p>
+	
+	<table border="1">
+		<tr>
+			<th>目撃日</th>
+			<td th:text="${sighting.sightedDate}">2026-01-01</td>
+		</tr>
+		
+		<tr>
+			<th>時刻</th>
+			<td th:text="${sighting.sightedTime}">00:00</td>
+		</tr>
+		
+		<tr>
+			<th>回数</th>
+			<td th:text="${sighting.count}">0</td>
+		</tr>
+		
+		<tr>
+			<th>めも</th>
+			<td th:text="${sighting.memo}">めも</td>
+		</tr>
+	</table>
+	
+	<form th:action="@{/sightings/{id}/delete(id=${sighting.id})}" method="post">
+		<button type="submit">削除する</button>
+	</form>
+	
+	<p><a th:href="@{/sightings}">キャンセル（一覧へ戻る）</a></p>
+</body>
+</html>
