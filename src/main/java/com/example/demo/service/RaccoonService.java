@@ -58,4 +58,11 @@ public class RaccoonService {
 		
 		raccoonRepository.save(raccoon);
 	}
+	
+	/**目撃記録を削除する*/
+	@Transactional
+	public void delete(Integer id) {
+		Raccoon raccoon = findById(id);
+		raccoonRepository.delete(raccoon);
+	}
 }
