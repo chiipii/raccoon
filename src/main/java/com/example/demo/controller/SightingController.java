@@ -34,6 +34,11 @@ public class SightingController {
 	public String list(Model model) {
 		List <Raccoon> sightings = raccoonService.findAll();
 		model.addAttribute("sightings", sightings);
+		
+		model.addAttribute("totalCount", raccoonService.totalCount());
+		model.addAttribute("recordCount", raccoonService.recordCount());
+		model.addAttribute("countByHour", raccoonService.countByHour());
+		
 		return "sightings/list";
 	}
 	
