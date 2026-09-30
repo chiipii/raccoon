@@ -2,6 +2,8 @@ package com.example.demo.service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -64,5 +66,29 @@ public class RaccoonService {
 	public void delete(Integer id) {
 		Raccoon raccoon = findById(id);
 		raccoonRepository.delete(raccoon);
+	}
+	
+	/**全期間の目撃回数の合計*/
+	public int totalCount() {
+		int total = 0;
+		for(Raccoon raccoon : raccoonRepository.findAll()) {
+			total += raccoon.getCount();
+		}
+		return total;
+	}
+	
+	/**記録の件数*/
+	public long recordCount() {
+		return raccoonRepository.count();
+	}
+	
+	/**時間帯ごとの目撃回数（記録のある時間のみ、時刻の昇順）*/
+	public Map<Integer, Integer> countByHour(){
+		Map<Integer, Integer> result = new TreeMap<>();
+		for(Raccoon raccoon : raccoonRepository.findAll()) {
+			int hour = raccoon.getSightedTime().getHour();
+			result.put(hour, result.getOrDefault(hour, 0) + raccoon.getCount());
+		}
+		return result;
 	}
 }
