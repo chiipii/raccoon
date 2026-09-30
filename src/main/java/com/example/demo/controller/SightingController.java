@@ -41,7 +41,7 @@ public class SightingController {
 	}
 	
 	/**登録する*/
-	@PostMapping("sightings")
+	@PostMapping("/sightings")
 	public String create(@ModelAttribute RaccoonForm raccoonForm) {
 		Raccoon raccoon = new Raccoon();
 		raccoon.setSightedDate(raccoonForm.getSightedDate());
