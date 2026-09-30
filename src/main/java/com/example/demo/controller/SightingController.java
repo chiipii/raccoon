@@ -97,4 +97,18 @@ public class SightingController {
 		raccoonService.update(raccoon);
 		return "redirect:/sightings";
 	}
+	
+	/**削除確認画面を表示する*/
+	@GetMapping("/sightings/{id}/delete")
+	public String confirmDelete(@PathVariable Integer id, Model model) {
+		model.addAttribute("sighting", raccoonService.findById(id));
+		return "sightings/delete";
+	}
+	
+	/**削除する*/
+	@PostMapping("/sightings/{id}/delete")
+	public String delete(@PathVariable Integer id) {
+		raccoonService.delete(id);
+		return "redirect:/sightings";
+	}
 }
