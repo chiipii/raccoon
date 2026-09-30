@@ -29,7 +29,9 @@
 				<td th:text="${sighting.memo}">めも</td>
 				<td>
 					<a th:href="@{/sightings/{id}(id=${sighting.id})}">編集</a>
+					<a th:href="@{/sightings/{id}(Id=${sighting.id})}">削除</a>
 				</td>
+					
 			</tr>
 			<tr th:if="${#lists.isEmpty(sightings)}">
 				<td colspan="5">記録がありません。</td>
