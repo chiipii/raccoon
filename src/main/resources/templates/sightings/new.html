@@ -13,12 +13,12 @@
 		
 		<div>
 			<label>目撃日</label>
-			<input type="date" th:field="*{sightedDate}">
+			<input type="date" th:field="*{sightedDate}" th:errorclass="error">
 		</div>
 		
 		<div>
 			<label>時刻</label>
-			<select th:field="*{sightedHour}">
+			<select th:field="*{sightedHour}" th:errorclass="error">
 				<option value="">選択して下さい</option>
 				<option th:each="h : ${#numbers.sequence(0, 23)}"
 				        th:value="${h}" th:text="${h} + '時'"></option>
@@ -27,12 +27,12 @@
 		
 		<div>
 			<label>回数</label>
-			<input type="number" th:field="*{count}">
+			<input type="number" th:field="*{count}" th:errorclass="error">
 		</div>
 		
 		<div>
 			<label>めも</label>
-			<input type="text" th:field="*{memo}" size="40">
+			<input type="text" th:field="*{memo}" size="40" th:errorclass="error">
 		</div>
 		
 		<button type="submit">登録する</button>
