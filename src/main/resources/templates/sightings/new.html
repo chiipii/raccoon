@@ -11,6 +11,10 @@
 	
 	<form th:action="@{/sightings}" th:object="${raccoonForm}" method="post">
 		
+		<div th:if="${#fields.hasErrors('notFuture'}}" class="error-message">
+			<span th:errors="*{notFuture}"></span>
+		</div>
+		
 		<div>
 			<label>目撃日</label>
 			<input type="date" th:field="*{sightedDate}" th:errorclass="error">
