@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.entity.Raccoon;
@@ -60,5 +61,40 @@ public class SightingController {
 		raccoonService.register(raccoon);
 		return "redirect:/sightings";
 	}
-
+	
+	/**編集画面を表示する*/
+	@GetMapping("/sightings/{id}")
+	public String edit(@PathVariable Integer id, Model model) {
+		Raccoon raccoon = raccoonService.findById(id);
+		
+		RaccoonForm raccoonForm = new RaccoonForm();
+		raccoonForm.setId(raccoon.getId());
+		raccoonForm.setSightedDate(raccoon.getSightedDate());
+		raccoonForm.setSightedHour(raccoon.getSightedTime().getHour());
+		raccoonForm.setCount(raccoon.getCount());
+		raccoonForm.setMemo(raccoon.getMemo());
+		
+		model.addAttribute("raccoonForm", raccoonForm);
+		return "sightings/edit";
+	}
+	
+	/**更新する*/
+	@PostMapping("sightings/{id}")
+	public String update(@PathVariable Integer id, @Valid @ModelAttribute RaccoonForm raccoonForm,
+			             BindingResult bindingResult) {
+		
+		if(bindingResult.hasErrors()) {
+			return "sightings/edit";
+		}
+		
+		Raccoon raccoon = new Raccoon();
+		raccoon.setId(id);
+		raccoon.setSightedDate(raccoonForm.getSightedDate());
+		raccoon.setSightedTime(LocalTime.of(raccoonForm.getSightedHour(), 0));
+		raccoon.setCount(raccoonForm.getCount());
+		raccoon.setMemo(raccoonForm.getMemo());
+		
+		raccoonService.update(raccoon);
+		return "redirect:/sightings";
+	}
 }
