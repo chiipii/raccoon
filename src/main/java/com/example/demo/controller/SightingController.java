@@ -36,7 +36,7 @@ public class SightingController {
 	/**登録画面を表示する*/
 	@GetMapping("/sightings/new")
 	public String newSighting(Model model) {
-		model.addAttribute("raccoonFrom", new RaccoonForm());
+		model.addAttribute("raccoonForm", new RaccoonForm());
 		return "sightings/new";
 	}
 	
