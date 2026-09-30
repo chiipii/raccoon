@@ -35,4 +35,27 @@ public class RaccoonService {
 		raccoon.setUpdatedAt(now);
 		raccoonRepository.save(raccoon);
 	}
+	
+	/**1件取得する。見つからなければ例外*/
+	public Raccoon findById(Integer id) {
+		return raccoonRepository.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("記録が見つかりません：id=" + id));
+	}
+	
+	/**目撃記録を更新する*/
+	@Transactional
+	public void update(Raccoon input) {
+		//DBから現在の値を取り直す
+		Raccoon raccoon = findById(input.getId());
+		
+		//画面から来た項目だけを上書きする
+		raccoon.setSightedDate(input.getSightedDate());
+		raccoon.setSightedTime(input.getSightedTime());
+		raccoon.setCount(input.getCount());
+		raccoon.setMemo(input.getMemo());
+		raccoon.setUpdatedAt(LocalDateTime.now());
+		//createdAtはあえて触らない
+		
+		raccoonRepository.save(raccoon);
+	}
 }
