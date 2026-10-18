@@ -48,8 +48,8 @@
 		
 		<tbody>
 			<tr th:each="sighting : ${sightings}">
-				<td th:text="${sighting.sightedDate}">2026/01/01</td>
-				<td th:text="${sighting.sightedTime}">0:00</td>
+				<td th:text="${sighting.sightedDate}">2026-01-01</td>
+				<td th:text="${sighting.sightedTime.hour} + '時'">0時</td>
 				<td th:text="${sighting.count}">0</td>
 				<td th:text="${sighting.memo}">めも</td>
 				<td>
