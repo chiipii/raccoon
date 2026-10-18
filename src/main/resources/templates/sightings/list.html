@@ -25,7 +25,7 @@
 		</p>
 		
 		<h3>時間帯別</h3>
-		<table border="1">
+		<table>
 			<tr th:each="entry : ${countByHour}">
 				<td th:text="${entry.key} + '時'">0時</td>
 				<td th:text="${entry.value} + '匹'">0匹</td>
@@ -36,7 +36,7 @@
 	<p><a th:href="@{/sightings/new}">新規登録</a></p>
 	
 	
-	<table border="1">
+	<table>
 		<thead>
 			<tr>
 				<th>目撃日</th>
