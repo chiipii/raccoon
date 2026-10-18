@@ -28,7 +28,7 @@
 		<div>
 			<label>時刻</label>
 			<select th:field="*{sightedHour}" th:errorclass="error">
-				<option value="">選択してください</option>
+				<option value="">選択して下さい</option>
 				<option th:each="h : ${#numbers.sequence(0, 23)}"
 				        th:value="${h}" th:text="${h} + '時'"></option>
 			</select>
