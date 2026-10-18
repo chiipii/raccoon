@@ -84,7 +84,7 @@ public class SightingController {
 	}
 	
 	/**更新する*/
-	@PostMapping("sightings/{id}")
+	@PostMapping("/sightings/{id}")
 	public String update(@PathVariable Integer id, @Valid @ModelAttribute RaccoonForm raccoonForm,
 			             BindingResult bindingResult) {
 		
