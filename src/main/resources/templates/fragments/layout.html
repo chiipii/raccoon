@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head(title)">
+	<meta charset="UTF-8">
+	<title th:text="${title}">タイトル</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+	<nav th:fragment="nav">
+		<a th:href="@{/sightings}">一覧</a>
+		<a th:href="@{/sightings/new}">新規登録</a>
+	</nav>
+
+</body>
+
+</html>

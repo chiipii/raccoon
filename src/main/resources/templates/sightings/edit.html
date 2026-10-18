@@ -1,26 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-	
-<meta charset="UTF-8">
-<title>目撃記録の編集</title>
-<link rel="stylesheet" th:href="@{/css/style.css}">
-</head>
+
+<head th:replace="~{fragments/layout :: head('目撃記録の編集')}"></head>
 
 <body>
+	<nav th:replace="~{fragments/layout :: nav}"></nav>
+
 	<h1>目撃記録の編集</h1>
-	
+
 	<form th:action="@{/sightings/{id}(id=*{id})}" th:object="${raccoonForm}" method="post">
-		
+
 		<input type="hidden" th:field="*{id}">
-		
+
 		<div th:replace="~{fragments/sightingFields :: fields}"></div>
-		
+
 		<button type="submit">更新する</button>
 
 	</form>
-	
-	<p><a th:href="@{/sightings}">一覧へ戻る</a></p>
+
 
 </body>
+
 </html>

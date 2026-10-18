@@ -1,29 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	
-<head>
-	<meta charset="UTF-8">
-	<title>目撃記録一覧</title>
-	<link rel="stylesheet" th:href="@{/css/style.css}">
-</head>
+
+<head th:replace="~{fragments/layout :: head('目撃記録一覧')}"></head>
 
 <body>
+
+	<nav ht:replace="~{fragments/layout :: nav}"></nav>
+
 	<h1>アライグマ目撃記録</h1>
-	
+
 	<h2>集計</h2>
 	<p th:if="${recordCount == 0}">まだ記録がありません。</p>
-	
+
 	<div th:unless="${recordCount == 0}">
 		<p>
 			総目撃数<strong th:text="${totalCount}">0</strong>匹
 			(記録 <span th:text="${recordCount}">0</span>件)
 		</p>
-		
+
 		<p>
 			最終目撃日
 			<strong th:text="${sightings[0].sightedDate}">2026/01/01</strong>
 		</p>
-		
+
 		<h3>時間帯別</h3>
 		<table>
 			<tr th:each="entry : ${countByHour}">
@@ -32,10 +31,8 @@
 			</tr>
 		</table>
 	</div>
-	
-	<p><a th:href="@{/sightings/new}">新規登録</a></p>
-	
-	
+
+
 	<table>
 		<thead>
 			<tr>
@@ -46,7 +43,7 @@
 				<th>編集</th>
 			</tr>
 		</thead>
-		
+
 		<tbody>
 			<tr th:each="sighting : ${sightings}">
 				<td th:text="${sighting.sightedDate}">2026-01-01</td>
@@ -57,7 +54,7 @@
 					<a th:href="@{/sightings/{id}(id=${sighting.id})}">編集</a>
 					<a th:href="@{/sightings/{id}/delete(id=${sighting.id})}">削除</a>
 				</td>
-					
+
 			</tr>
 			<tr th:if="${#lists.isEmpty(sightings)}">
 				<td colspan="5">記録がありません。</td>
@@ -65,4 +62,5 @@
 		</tbody>
 	</table>
 </body>
+
 </html>

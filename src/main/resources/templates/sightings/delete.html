@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 	
-<head>
-<meta charset="UTF-8">
-<title>削除の確認</title>
-<link rel="stylesheet" th:href="@{/css/style.css}">
-</head>
+<head th:replace="={fragments/layout :: head('削除の確認')}"></head>
 
 <body>
+	<nav th:replace="~{fragments/layout :: nav}"></nav>
+	
 	<h1>削除の確認</h1>
 	
 	<p>次の記録を削除します。よろしいですか？</p>

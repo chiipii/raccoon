@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 	
-<head>
-<meta charset="UTF-8">
-<title>目撃記録の登録</title>
-<link rel="stylesheet" th:href="@{/css/style.css}">
-</head>
+<head th:replace="~{fragments/layout :: head('目撃記録の登録')}"></head>
 
 <body>
+	
+	<nav th:replace="~{fragments/layout :: nav}"></nav>
+	
 	<h1>目撃記録の登録</h1>
 	
 	<form th:action="@{/sightings}" th:object="${raccoonForm}" method="post">
@@ -17,6 +16,5 @@
 		<button type="submit">登録する</button>
 	</form>
 	
-	<p><a th:href="@{/sightings}">一覧へ戻る</a></p>
 </body>
 </html>
