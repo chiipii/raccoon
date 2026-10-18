@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+/*margin: 2em：ページの上下左右に文字サイズ2倍分の余白を持たせる。
+　line-height :1.6：行間を標準の1.6倍にする*/
+body{front-family:sans-serif; margin: 2em; line-height: 1.6;}
+
+h1{front-size: 1.4em; border-botttom: 2px solid #8a6; paddingg-bottom: 2em;}
+h2{front-size: 1.15em;}
+h3{front-size: 1.05em;}
+
+/*border-collapse: collape：テーブルのセルとセルの間の隙間を無くし、一般的な綺麗な一枚の格子状の表
+  th, td：全ての見出しセルと通常セルに薄いグレーの枠線と文字の周りに適度な余白を持たせる*/
+table{border-collapse: collapse; margin-bottom: 1em;}
+th, td{border: 1px solid #ccc; padding: 0.3em 0.8em;}
+th{background: #f0f0f0;}
+
+/*form div：フォーム内の各入力項目の下に適度な余白
+　　display: inline-block：文字幅6文字分で幅を持たせる*/
+form div{margin-bottom: 0.6em;}
+label{display: inline-block; width: 6em;}
+
+/*nav a：サイトのメニュー内のリンクの右側に適度な隙間*/
+.error{background-color: #ffe0e0;}
+.error-message{color: #c00; front-size: 0.9em;}
+.bar{display: in-line-block; background: #8a6; height:12px;}
+nav a{margin-right: 1em;}
