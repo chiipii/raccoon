@@ -65,7 +65,7 @@ public class RaccoonFormTest {
 	void 時刻未選択() {
 		RaccoonForm form = validForm();
 		form.setSightedHour(null);
-		assertThat(messagesOf(form)).contains("時刻を設定して下さい。");
+		assertThat(messagesOf(form)).containsExactly("時刻を設定して下さい。");
 	}
 	
 	@Test
@@ -73,15 +73,15 @@ public class RaccoonFormTest {
 	void 時刻() {
 		RaccoonForm over = validForm();
 		over.setSightedHour(24);
-		assertThat(messagesOf(over)).contains("時刻は0〜23で選択して下さい。");
+		assertThat(messagesOf(over)).contains("時刻は0~23で選択して下さい。");
 		
 		RaccoonForm minus = validForm();
 		minus.setSightedHour(-1);
-		assertThat(messagesOf(minus)).contains("時刻は0〜23で選択して下さい。");
+		assertThat(messagesOf(minus)).contains("時刻は0~23で選択して下さい。");
 		
-		RaccoonForm Zero = validForm();
-		Zero.setSightedHour(0);
-		assertThat(messagesOf(Zero)).isEmpty();
+		RaccoonForm zero = validForm();
+		zero.setSightedHour(0);
+		assertThat(messagesOf(zero)).isEmpty();
 		
 		RaccoonForm hourMax = validForm();
 		hourMax.setSightedHour(23);
@@ -121,12 +121,12 @@ public class RaccoonFormTest {
 	}
 	
 	@Test
-	@DisplayName("明日の日付は未来なのでエラー")
-	void 未来の日付() {
+	@DisplayName("明日の日時は未来なのでエラー")
+	void 未来の日時() {
 		RaccoonForm form = validForm();
 		form.setSightedDate(LocalDate.now().plusDays(1));
 		form.setSightedHour(0);
-		assertThat(messagesOf(form)).contains("未来の日付は登録できません。");
+		assertThat(messagesOf(form)).contains("未来の日時は登録できません。");
 	}
 	
 	@Test
