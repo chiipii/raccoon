@@ -9,7 +9,7 @@
 <body>
 	<h1>目撃記録の編集</h1>
 	
-	<form th:action="@{/sightings/{id}(id = *{id})}" th:object="${raccoonForm}" method="post">
+	<form th:action="@{/sightings/{id}(id=*{id})}" th:object="${raccoonForm}" method="post">
 		
 		<input type="hidden" th:field="*{id}">
 		
