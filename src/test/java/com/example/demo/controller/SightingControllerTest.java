@@ -139,6 +139,22 @@ public class SightingControllerTest {
 		//IDがnullであることを検証。登録時はDBに採番させるのでIDはnullのまま渡す
 		assertThat(registered.getId()).isNull();
 	}
+	
+	@Test
+	@DisplayName("登録の入力エラーなら登録画面に戻し、サービスを呼ばない")
+	void 登録_入力エラー() throws Exception{
+		mockMvc.perform(post("/sightings")
+				.with(csrf())
+				.param("sightedDate", "")
+				.param("sightedHour", "22")
+				.param("count", "2"))
+		.andExpect(status().isOk())
+		.andExpect(view().name("sightings/new"))
+		.andExpect(model().attributeHasFieldErrors("raccoonForm","sightedDate"));
+		
+		//エラー時は登録処理まで進まないこと
+		verify(raccoonService, never()).register(any(Raccoon.class));
+	}
 
 	@Test
 	@DisplayName("編集画面を開いた時に、ID=1のデータをServiceから取得して、それを正しい内容のformとして編集画面に渡しているか")

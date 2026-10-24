@@ -21,7 +21,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.example.demo.entity.Raccoon;
 import com.example.demo.repository.RaccoonRepository;
-import com.example.demo.service.RaccoonService;
 
 /**RaccoonServiceの業務処理を検証する。*/
 @ExtendWith(MockitoExtension.class)/**Mockitoを簡単に作るためのライブラリを連動させるための拡張機能*/
@@ -64,6 +63,13 @@ public class RaccoonServiceTest {
 		
 		//並び替えなしのfindAll()と取り違えていないこと
 		verify(raccoonRepository, never()).findAll();
+	}
+	
+	@Test
+	@DisplayName("recordCountはリポジトリの件数をそのまま返す")
+	void 件数取得() {
+		when(raccoonRepository.count()).thenReturn(3L);
+		assertThat(raccoonService.recordCount()).isEqualTo(3L);
 	}
 	
 	@Test
