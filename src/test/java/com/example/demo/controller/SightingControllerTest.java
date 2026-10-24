@@ -115,7 +115,7 @@ public class SightingControllerTest {
 	@Test
 	@DisplayName("登録すると分を0にした時刻でサービスに渡し、一覧へリダイレクトする")
 	void 登録() throws Exception {
-		mockMvc.perform(post("sightings")
+		mockMvc.perform(post("/sightings")
 				.with(csrf())
 				//formからsightedDate=2026-10-01が送信されたことを再現している。
 				.param("sightedDate", "2026-10-01")
